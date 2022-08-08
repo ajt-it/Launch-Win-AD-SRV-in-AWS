@@ -184,18 +184,28 @@ autorisé du domaine (voir stack CloudFormation)
 ![gg](https://user-images.githubusercontent.com/46109209/183519184-968537ac-bc69-4f5c-b722-49878ada8478.png)
 
 
-Un redémarrage sera effectué pour prendre en compte les modification. Vous pouvez maintenant vous connectez
+Un redémarrage sera effectué pour prendre en compte les modification. Vous pouvez maintenant vous connecter
 au doamine:
 
-![hh](https://user-images.githubusercontent.com/46109209/183519675-9b512d6b-9269-47c7-a483-6bfce2ff7405.png)
+![dddddddd](https://user-images.githubusercontent.com/46109209/183524748-a5c7c1eb-286c-46e2-9ad4-248fbdedb952.png)
 
 ![k](https://user-images.githubusercontent.com/46109209/183519679-efa8d48e-1f9b-40b6-bac0-2aecda15e63f.png)
 
 ![vfrtg](https://user-images.githubusercontent.com/46109209/183519994-ef26a253-4a32-4915-bc6f-f566a4c64650.png)
 
-Test de connexion au lecteur réseau du serveur 'Active Directory' dans AWS
+Test de connexion au lecteur réseau du serveur 'Active Directory' dans AWS depuis le réseau local
 
 ![test](https://user-images.githubusercontent.com/46109209/183522123-97ad13fd-0bb2-4b8e-81c3-e93bea22ee16.png)
+
+
+## Connexion à l'instance (Windows Server 2019) dans AWS
+
+Le mode RDP (Remote Desktop Protocol) semble être le moyen le plus accommodant pour se connecter à son instanse Windows dans AWS.
+
+
+
+
+
 
 
 
