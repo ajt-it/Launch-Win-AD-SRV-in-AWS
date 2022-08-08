@@ -117,9 +117,11 @@ Info ++ : Attention Strongswan est très susceptible avec ce fichier, toutes les
 Éditez le fichier /etc/ipsec.secrets comme suit 
 ![6](https://user-images.githubusercontent.com/46109209/183501050-fd192a38-45d7-40d3-80ea-7ee6598b2903.png)
 
+
+## Mise en place de l'infrastructure dans AWS
+
 Il est temps d'interconnecter notre LAN à AWS. Nous avons créé un fichier 'yaml' pour stack CloudFormation; nous pourrons ainsi monter notre Infra As a Code.
 Il ne restera qu’à personnaliser les champs et configurer votre VPN côté LAN. 
-
 
 Une fois que le ficher 'yaml' aura été exécuté, rendez-vous dans la console AWS, retournez sur le service VPC, et dans le menu “Connexions VPN site à site“. Sélectionnez la liaison VPN que nous avons créée et cliquer sur le bouton “Download configuration“.
 
@@ -138,16 +140,20 @@ Pourquoi deux tunnels? La redondance.
 
 ![d](https://user-images.githubusercontent.com/46109209/183508815-287dd636-b20c-4cd0-a031-9a0e72a04699.png)
 
+
+### Finalisation de la configuration de VPN local:
+
 Vous l'avez sans doute remarqué, les données de ce fichier vont permettre d'éditer le fichiers 'ipsec.conf' et 'ipsec.secrets'.
 Une fois les ajustements de configuration effectués, il est temps de démarrer le VPN local (serveur Linux Ubuntu).
 Placez-vous dans le terminal et lancez les commandes suivantes:
 
+Redémarrage d'IPsec :
 ### ~$ sudo ipsec restart
 
+Démarrage de la liaison VPN :
 ### ~$ sudo ipsec up lan-to-aws
 
 Vérifier l'état de la connexion :
-
 ### ~$ sudo ipsec status          
 
 ![7](https://user-images.githubusercontent.com/46109209/183511938-0a0827cb-83db-4c07-b648-4e35db5ba2e8.png)
@@ -157,18 +163,41 @@ Afin de confirmer que notre serveur VPN communique avec l'instance dans le cloud
 ![e](https://user-images.githubusercontent.com/46109209/183512958-103a9a8b-332f-4034-999d-30c541ecc6fe.png)
 
 
+## Configuration réseau des machines du site local
+
+Effectuez la configuration de l'interface réseau des postes comme suit:
+
+![f](https://user-images.githubusercontent.com/46109209/183515803-0258a76c-cc61-408e-97c9-1cb1cf3fa4be.png)
+
+Un test de PING permettra de s'assurer que la machine du réseau local de l'entreprise communique avec le serveur 
+Windows dans le cloud
+
+![g](https://user-images.githubusercontent.com/46109209/183516673-4b345d65-6d2e-4f3a-860f-c8fe705d2b0d.png)
+
+Nous allons joindre un ordinateur du réseau local au domaine (it.pro) et se connecter grâce à un utilisateur 
+autorisé du domaine (voir stack CloudFormation)
+
+![ee](https://user-images.githubusercontent.com/46109209/183519139-b523a966-3f85-420b-bc54-a935a82d68df.png)
+
+![ff](https://user-images.githubusercontent.com/46109209/183519140-0798c48a-11f3-44e6-ac33-9f246d3761f8.png)
+
+![gg](https://user-images.githubusercontent.com/46109209/183519184-968537ac-bc69-4f5c-b722-49878ada8478.png)
+
+
+Un redémarrage sera effectué pour prendre en compte les modification. Vous pouvez maintenant vous connectez
+au doamine:
+
+![hh](https://user-images.githubusercontent.com/46109209/183519675-9b512d6b-9269-47c7-a483-6bfce2ff7405.png)
+
+![k](https://user-images.githubusercontent.com/46109209/183519679-efa8d48e-1f9b-40b6-bac0-2aecda15e63f.png)
+
+![vfrtg](https://user-images.githubusercontent.com/46109209/183519994-ef26a253-4a32-4915-bc6f-f566a4c64650.png)
+
+Test de connexion au lecteur réseau du serveur 'Active Directory' dans AWS
+
+![test](https://user-images.githubusercontent.com/46109209/183522123-97ad13fd-0bb2-4b8e-81c3-e93bea22ee16.png)
 
 
 
----
 
 
-Joignez un ordinateur au domaine et connectez-vous à l'utilisateur du domaine
-
-Configurez comme suit l'interface réseau de votre PC Windows
-![image](https://user-images.githubusercontent.com/46109209/179756143-b2b5c865-5c75-4bf9-a35e-482f2912cc5c.png)
-![image](https://user-images.githubusercontent.com/46109209/179645537-c5790667-a72b-424d-abea-e6db51772f0e.png)
-![image](https://user-images.githubusercontent.com/46109209/179756451-6351f2a3-c03d-42f9-86ab-86fa3d9314e2.png)
-
-![image](https://user-images.githubusercontent.com/46109209/179756574-3df64aff-9fa1-404f-ac78-c4aafa5e0c61.png)
-![image](https://user-images.githubusercontent.com/46109209/179756601-656464a3-49d3-44c0-a307-44b7d51d506c.png)
