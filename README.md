@@ -14,12 +14,12 @@
 
  - :white_check_mark: YAML
 
- - :white_check_mark: SHELL
+ - :white_check_mark: PowerShell
 
 
 ## Pré-requis
 
-  * Avoir des bases solides en Linux;
+  * Avoir des bases en Linux;
   * Un serveur Linux Ubuntu 20.04 (Disposer des droits 'root'sur le serveur Linux);
   * Un compte AWS;
   * Un ordinateur Windows 10;
@@ -241,5 +241,11 @@ Le mode RDP (Remote Desktop Protocol) semble être le moyen le plus accommodant 
 
 ![1d](https://user-images.githubusercontent.com/46109209/183527385-31c7c6fc-d2f3-439a-9139-922977f5888e.png)
 
+Vérifions à présent si ADDSForest est bien installé :
 
+![bb](https://user-images.githubusercontent.com/46109209/183529818-32ec6238-891a-4edf-972b-0af107610e1f.png)
+
+![cc](https://user-images.githubusercontent.com/46109209/183529822-1b242a39-eb16-499f-8087-cc7d07f7c996.png)
+
+![dd](https://user-images.githubusercontent.com/46109209/183529853-dc3fa493-3552-4d99-9307-3584f87cd443.png)
 
