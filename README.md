@@ -2,11 +2,16 @@
 
 # Launch-Win-AD-SRV-in-AWS
 
+Pouquoi déployer Active Directoy sur AWS?
+
+La gestion des identités, et des droits associés, est une partie sensible et essentielle de l’infrastructure IT des entreprises, 
+et Microsoft Active Directory est devenu une brique incontournable au sein des entreprises ayant un environnement Microsoft.
+Il devient donc nécessaire de proposer aux entreprises des solutions innovantes et flexibles pour leur développement.
 
 
 ## Représentation de l'infrastructure
 
-![INFRA](https://user-images.githubusercontent.com/46109209/183467799-d3e88133-aca2-4d43-acfc-fc2d6f58cfbf.png)
+![INFRA-2](https://user-images.githubusercontent.com/46109209/183530215-96b8d127-ceed-4a86-b8a3-31b8c56f2fa3.png)
 
 
 ## Langages
