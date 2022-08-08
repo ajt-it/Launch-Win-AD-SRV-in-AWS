@@ -17,7 +17,6 @@
  - :white_check_mark: SHELL
 
 
-
 ## Pré-requis
 
   * Avoir des bases solides en Linux;
@@ -27,6 +26,38 @@
   * Un serveur Windows 2016 (ou 2019);
   * Une connexion internet;
   * une addresse 'IP Public'.
+
+
+
+## Objectifs
+
+À l'aide d'un stack (.yaml) CloudFormation, mettre en place d'un serveur Windows ADDS sur AWS en utilisant :
+
+  - EC2 (t2.micro) pour le serveur AD;
+  - CloudFormation pour automatiser la création de l’infrastructure
+
+Mettre en place des liaisons VPN entre des serveurs VPN locaux et le sous-réseau privé AWS pour se connecter au serveur Windows de manière sécurisée depuis divers sites.
+
+
+
+
+## Technologies
+
+Liste des technologies AWS & autres utilisées :
+
+- aws CloudFormation
+- aws EC2
+- aws VPC
+- Windows Server 2019
+
+
+## Ressources
+
+- https://docs.aws.amazon.com/
+- https://neptunet.fr/vpn-with-aws/
+- https://www.google.com/
+
+
 
 
 ## Configuration du serveur Linux Ubuntu 20.04
@@ -202,12 +233,13 @@ Test de connexion au lecteur réseau du serveur 'Active Directory' dans AWS depu
 
 Le mode RDP (Remote Desktop Protocol) semble être le moyen le plus accommodant pour se connecter à son instanse Windows dans AWS.
 
+![1a](https://user-images.githubusercontent.com/46109209/183527126-cd16e429-f7db-482a-b969-fbad8f0f1fe1.png)
 
+![1b](https://user-images.githubusercontent.com/46109209/183527169-f0a3a918-a652-40f1-9835-104199e0a99f.png)
 
+![aa](https://user-images.githubusercontent.com/46109209/183527327-9add712e-01c2-4892-9eb7-7c578c3e6c08.png)
 
-
-
-
+![1d](https://user-images.githubusercontent.com/46109209/183527385-31c7c6fc-d2f3-439a-9139-922977f5888e.png)
 
 
 
