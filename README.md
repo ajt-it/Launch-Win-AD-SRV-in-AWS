@@ -157,7 +157,7 @@ Editez le fichier /etc/ipsec.conf, comme c-dessous et ajoutez “votre_ip_publiq
 ### ~$ sudo nano /etc/ipsec.conf
 ![5](https://user-images.githubusercontent.com/46109209/183499039-70253be5-c118-4adc-a721-7498b8d0de36.png)
 
-N.B. : Attention Strongswan est très susceptible avec ce fichier, toutes les lignes écrites après “conn nom_de_votre_liaison” doivent obligatoirement commencer par une tabulation sinon le démarrage d’ipsec sera en erreur.
+N.B. Attention Strongswan est très susceptible avec ce fichier, toutes les lignes écrites après “conn nom_de_votre_liaison” doivent obligatoirement commencer        par une tabulation sinon le démarrage d’ipsec sera en erreur.
 
 Éditez le fichier /etc/ipsec.secrets comme suit 
 ![6](https://user-images.githubusercontent.com/46109209/183501050-fd192a38-45d7-40d3-80ea-7ee6598b2903.png)
@@ -267,4 +267,5 @@ Vérifions à présent si ADDSForest est bien installé :
 
 ![dd](https://user-images.githubusercontent.com/46109209/183529853-dc3fa493-3552-4d99-9307-3584f87cd443.png)
 
-
+N.B. Une bonne pratique est de renommer le serveur ADDS. En utilisant, un compte "administrateur" du domaine; lancez la commande : 
+### C:\Users\Administrator> Rename-Computer -NewName "New_Computer_Name"
