@@ -58,11 +58,10 @@ Liste des technologies AWS & autres utilisées :
 
 ## Ressources
 
+- https://www.google.com/
 - https://docs.aws.amazon.com/
-- https://neptunet.fr/vpn-with-aws/
-- https://docs.aws.amazon.com/vpn/latest/s2svpn/VPN_CloudHub.html
-- https://www.scalefactory.com/blog/2020/12/14/how-to-set-up-a-site-to-site-vpn-connection/
-- https://medium.com/dlt-labs-publication/how-do-you-set-up-an-aws-site-to-site-vpn-connection-674605c019f6
+- https://docs.aws.amazon.com/
+- https://docs.microsoft.com/
 
 ## La limite & la piste de solution
 
@@ -219,9 +218,9 @@ Effectuez la configuration de l'interface réseau des postes comme suit:
 ![f](https://user-images.githubusercontent.com/46109209/183515803-0258a76c-cc61-408e-97c9-1cb1cf3fa4be.png)
 
 Un test de PING permettra de s'assurer que la machine du réseau local de l'entreprise communique avec le serveur 
-Windows dans le cloud
+Windows dans le cloud :
 
-![g](https://user-images.githubusercontent.com/46109209/183516673-4b345d65-6d2e-4f3a-860f-c8fe705d2b0d.png)
+![183516673-4b345d65-6d2e-4f3a-860f-c8fe705d2b0d](https://user-images.githubusercontent.com/46109209/183642222-3c202361-2722-4425-9e1f-0f1fe1f62235.png)
 
 Nous allons joindre un ordinateur du réseau local au domaine (it.pro) et se connecter grâce à un utilisateur 
 autorisé du domaine (voir stack CloudFormation)
