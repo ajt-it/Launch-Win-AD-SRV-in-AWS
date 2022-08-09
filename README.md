@@ -59,9 +59,8 @@ Liste des technologies AWS & autres utilisées :
 ## Ressources
 
 - https://www.google.com/
-- https://docs.aws.amazon.com/
-- https://docs.aws.amazon.com/
 - https://docs.microsoft.com/
+- https://docs.aws.amazon.com/
 
 ## La limite & la piste de solution
 
@@ -225,7 +224,8 @@ Windows dans le cloud :
 Nous allons joindre un ordinateur du réseau local au domaine (it.pro) et se connecter grâce à un utilisateur 
 autorisé du domaine (voir stack CloudFormation)
 
-Avant de procédeer, nous recommendons de désactiver le pare-feu de Microsoft Defender 
+Avant de procédeer, nous recommendons de désactiver le pare-feu de Microsoft Defender
+
 https://support.microsoft.com/fr-fr/windows/activer-ou-d%C3%A9sactiver-le-pare-feu-de-microsoft-defender-ec0844f7-aebd-0583-67fe-601ecf5d774f
 
 ![ee](https://user-images.githubusercontent.com/46109209/183519139-b523a966-3f85-420b-bc54-a935a82d68df.png)
