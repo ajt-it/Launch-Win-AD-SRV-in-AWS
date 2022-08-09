@@ -11,7 +11,9 @@ Il devient donc nécessaire de proposer aux entreprises des solutions innovantes
 
 ## Représentation de l'infrastructure
 
-![INFRA-2](https://user-images.githubusercontent.com/46109209/183530215-96b8d127-ceed-4a86-b8a3-31b8c56f2fa3.png)
+![INFRA-3](https://user-images.githubusercontent.com/46109209/183610279-8b707d43-2279-4d1f-827e-934fa06018a1.png)
+
+N.B. Le choix des ISP (Internet Service Provider) ou FAI (Fournisseur d'Accès Internet) est personnel et n'est l'objet d'aucune entente. 
 
 
 ## Langages
@@ -25,7 +27,7 @@ Il devient donc nécessaire de proposer aux entreprises des solutions innovantes
 ## Pré-requis
 
   * Avoir des bases en Linux;
-  * Un serveur Linux Ubuntu 20.04 (Disposer des droits 'root'sur le serveur Linux);
+  * Un serveur Linux Ubuntu 20.04 (Disposer des droits 'root' sur le serveur Linux);
   * Un compte AWS;
   * Un ordinateur Windows 10;
   * Un serveur Windows 2016 (ou 2019);
@@ -44,8 +46,6 @@ Il devient donc nécessaire de proposer aux entreprises des solutions innovantes
 Mettre en place des liaisons VPN entre des serveurs VPN locaux et le sous-réseau privé AWS pour se connecter au serveur Windows de manière sécurisée depuis divers sites.
 
 
-
-
 ## Technologies
 
 Liste des technologies AWS & autres utilisées :
@@ -60,10 +60,23 @@ Liste des technologies AWS & autres utilisées :
 
 - https://docs.aws.amazon.com/
 - https://neptunet.fr/vpn-with-aws/
-- https://www.google.com/
+- https://docs.aws.amazon.com/vpn/latest/s2svpn/VPN_CloudHub.html
+- https://www.scalefactory.com/blog/2020/12/14/how-to-set-up-a-site-to-site-vpn-connection/
+- https://medium.com/dlt-labs-publication/how-do-you-set-up-an-aws-site-to-site-vpn-connection-674605c019f6
 
+## La limite & la piste de solution
 
+Avoir, un service ADDS multisites présente de nombreux avantages. Cependant, il y'a des limites.
 
+La plus grande (et celle dont nous ferons état ici) est sans doute le fait de disposer d'une connexion internet fiable
+à un coût non prohibitif.
+
+Un moyen de palier à l'indisponibilité du service internet et par conséquent à la coupure de la liaison entre deux sites 
+serait de mettre en place sur les divers sites loxaux un serveur RODC (Read Only Domain Controller).
+
+Le serveur RODC ne servira qu’à authentifier les postes et les utilisateurs et appliquera également les stratégies de groupe.
+Comme la base de données Active Directory ne sera pas modifiable, même s’il est compromis, il ne sera pas possible d’en prendre 
+le contrôle en créant un nouvel utilisateur administrateur par exemple et ceci n’impactera pas le serveur AD principal de l’entreprise.
 
 ## Configuration du serveur Linux Ubuntu 20.04
 
@@ -212,6 +225,9 @@ Windows dans le cloud
 
 Nous allons joindre un ordinateur du réseau local au domaine (it.pro) et se connecter grâce à un utilisateur 
 autorisé du domaine (voir stack CloudFormation)
+
+Avant de procédeer, nous recommendons de désactiver le pare-feu de Microsoft Defender 
+https://support.microsoft.com/fr-fr/windows/activer-ou-d%C3%A9sactiver-le-pare-feu-de-microsoft-defender-ec0844f7-aebd-0583-67fe-601ecf5d774f
 
 ![ee](https://user-images.githubusercontent.com/46109209/183519139-b523a966-3f85-420b-bc54-a935a82d68df.png)
 
