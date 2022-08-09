@@ -26,14 +26,14 @@ N.B. Le choix des ISP (Internet Service Provider) ou FAI (Fournisseur d'Accès I
 
 ## Pré-requis
 
-  * Avoir des bases en Linux;
-  * Un serveur Linux Ubuntu 20.04 (Disposer des droits 'root' sur le serveur Linux);
+  
   * Un compte AWS;
+  * Une connexion internet;
   * Un ordinateur Windows 10;
   * Un serveur Windows 2016 (ou 2019);
-  * Une connexion internet;
-  * une addresse 'IP Public'.
-
+  * une addresse 'IP Public'(chaque site).  
+  * Avoir des bases en Linux, YAML & PowerShell;
+  * Un serveur Linux Ubuntu 20.04 et disposer des droits 'root';
 
 
 ## Objectifs
@@ -50,9 +50,9 @@ Mettre en place des liaisons VPN entre des serveurs VPN locaux et le sous-résea
 
 Liste des technologies AWS & autres utilisées :
 
-- aws CloudFormation
 - aws EC2
 - aws VPC
+- aws CloudFormation
 - Windows Server 2019
 
 
@@ -62,7 +62,7 @@ Liste des technologies AWS & autres utilisées :
 - https://docs.microsoft.com/
 - https://docs.aws.amazon.com/
 
-## La limite & la piste de solution
+## Limites & Piste de solution
 
 Avoir, un service ADDS multisites présente de nombreux avantages. Cependant, il y'a des limites.
 
@@ -76,7 +76,10 @@ Le serveur RODC ne servira qu’à authentifier les postes et les utilisateurs e
 Comme la base de données Active Directory ne sera pas modifiable, même s’il est compromis, il ne sera pas possible d’en prendre 
 le contrôle en créant un nouvel utilisateur administrateur par exemple et ceci n’impactera pas le serveur AD principal de l’entreprise.
 
+
 ## Configuration du serveur Linux Ubuntu 20.04
+
+Cette configuration variera très peu selon les sites.
 
 Commencez en attribuant une adresse IP statique à votre serveur. Ubuntu Server utilise « netplan » pour la gestion du réseau.
 Votre configuration réseau ressemblera à ceci :
@@ -90,24 +93,19 @@ N.B. Ne pas utiliser de tabulations dans « netplan » mais des espaces !
 Appliquer la configuration avec la commande :
 ### ~$ sudo netplan apply
 
-
 Vérifiez si l'heure de votre serveur synchronise avec un serveur Internet.
 ### ~$ sudo timedatectl
 
-
 Procédez à la mise à jour du système, en vous plaçant dans le terminal et frappez : 
 ### ~$ sudo apt –y update && apt –y upgrade
-
 
 Modifiez le nom d'hôte (hostname), mettez à jour le fichier « hosts » et identifiez dans « resolv.conf » le serveur DNS à utiliser pour résoudre le nom de domaine
 ### ~$ sudo nano /etc/hostname
 ![hostname](https://user-images.githubusercontent.com/46109209/183491231-0e5b19d5-e38c-492d-a3cf-22570de30874.png)
 
-
 ### ~$ sudo nano /etc/hosts
 ![hosts](https://user-images.githubusercontent.com/46109209/183491232-4195a645-b802-4f78-ba3a-1a11155ff862.png)
 
- 
 ### ~$ sudo nano /etc/resolv.conf
 ![resolv](https://user-images.githubusercontent.com/46109209/183492830-cd0a054c-de5d-44c5-882b-3c1f393b2545.png)
 
@@ -132,9 +130,9 @@ Activez « netfilter-persistent » avec :
 
 Vous pourrez à présent établir vos règles de routage. Voici la règle routage NAT que nous mettons en place sur les interfaces « enp0s3 » et « enp0s8 » avec la commande suivante :
 ### ~$ sudo iptables –t nat –A POSTROUTING –o enp0s3 –j MASQUERADE
-![image](https://user-images.githubusercontent.com/46109209/179643583-77709aba-da6e-4020-8ed6-fbd749e78e7c.png)
+### ~$ sudo iptables –t nat –A POSTROUTING –o enp0s8 –j MASQUERADE
 
-### ~$ sudo iptables –t nat –A POSTROUTING –o enp0s3 –j MASQUERADE
+![image](https://user-images.githubusercontent.com/46109209/179643583-77709aba-da6e-4020-8ed6-fbd749e78e7c.png)
 
 Enregistrez les règles avec la commande ci-dessous:
 ### ~$ sudo iptables-save
@@ -159,7 +157,7 @@ Editez le fichier /etc/ipsec.conf, comme c-dessous et ajoutez “votre_ip_publiq
 ### ~$ sudo nano /etc/ipsec.conf
 ![5](https://user-images.githubusercontent.com/46109209/183499039-70253be5-c118-4adc-a721-7498b8d0de36.png)
 
-Info ++ : Attention Strongswan est très susceptible avec ce fichier, toutes les lignes écrites après “conn nom_de_votre_liaison” doivent obligatoirement commencer par une tabulation sinon le démarrage d’ipsec sera en erreur.
+N.B. : Attention Strongswan est très susceptible avec ce fichier, toutes les lignes écrites après “conn nom_de_votre_liaison” doivent obligatoirement commencer par une tabulation sinon le démarrage d’ipsec sera en erreur.
 
 Éditez le fichier /etc/ipsec.secrets comme suit 
 ![6](https://user-images.githubusercontent.com/46109209/183501050-fd192a38-45d7-40d3-80ea-7ee6598b2903.png)
@@ -167,7 +165,7 @@ Info ++ : Attention Strongswan est très susceptible avec ce fichier, toutes les
 
 ## Mise en place de l'infrastructure dans AWS
 
-Il est temps d'interconnecter notre LAN à AWS. Nous avons créé un fichier 'yaml' pour stack CloudFormation; nous pourrons ainsi monter notre Infra As a Code.
+Il est temps d'interconnecter notre LAN à AWS. Nous avons créé un fichier 'yaml' pour stack CloudFormation; nous pourrons ainsi monter notre Infrastructure As a Code.
 Il ne restera qu’à personnaliser les champs et configurer votre VPN côté LAN. 
 
 Une fois que le ficher 'yaml' aura été exécuté, rendez-vous dans la console AWS, retournez sur le service VPC, et dans le menu “Connexions VPN site à site“. Sélectionnez la liaison VPN que nous avons créée et cliquer sur le bouton “Download configuration“.
@@ -268,4 +266,5 @@ Vérifions à présent si ADDSForest est bien installé :
 ![cc](https://user-images.githubusercontent.com/46109209/183529822-1b242a39-eb16-499f-8087-cc7d07f7c996.png)
 
 ![dd](https://user-images.githubusercontent.com/46109209/183529853-dc3fa493-3552-4d99-9307-3584f87cd443.png)
+
 
