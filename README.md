@@ -11,7 +11,7 @@ Il devient donc nécessaire de proposer aux entreprises des solutions innovantes
 
 ## Représentation de l'infrastructure
 
-![INFRA-3](https://user-images.githubusercontent.com/46109209/183610279-8b707d43-2279-4d1f-827e-934fa06018a1.png)
+![INFRA](https://user-images.githubusercontent.com/46109209/184464704-bf011056-c87b-4601-9345-e8908783a704.png)
 
 N.B. Le choix des ISP (Internet Service Provider) ou FAI (Fournisseur d'Accès Internet) est personnel et n'est l'objet d'aucune entente. 
 
@@ -29,11 +29,8 @@ N.B. Le choix des ISP (Internet Service Provider) ou FAI (Fournisseur d'Accès I
   
   * Un compte AWS;
   * Une connexion internet;
-  * Un ordinateur Windows 10;
-  * Un serveur Windows 2016 (ou 2019);
-  * une addresse 'IP Public'(chaque site).  
-  * Avoir des bases en Linux, YAML & PowerShell;
-  * Un serveur Linux Ubuntu 20.04 et disposer des droits 'root';
+  * une addresse 'IP Public';  
+  * Avoir des bases en Linux, YAML & PowerShell.
 
 
 ## Objectifs
@@ -53,7 +50,9 @@ Liste des technologies AWS & autres utilisées :
 - aws EC2
 - aws VPC
 - aws CloudFormation
+- Windows 10
 - Windows Server 2019
+- Linux Ubuntu 20.04
 
 
 ## Ressources
