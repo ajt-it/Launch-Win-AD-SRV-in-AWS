@@ -202,7 +202,8 @@ Redémarrage d'IPsec :
 Démarrage des liaisons VPN :
 ### ~$ sudo ipsec up lan-to-aws-1
 ### ~$ sudo ipsec up lan-to-aws-2
-![3](https://user-images.githubusercontent.com/46109209/184722836-a603b009-6a22-4e54-9ae5-87c2c1bf2752.png)
+
+![3](https://user-images.githubusercontent.com/46109209/184725907-964d9d5f-daf8-4876-bb06-479815857d07.png)
 
 
 Afin de confirmer que notre serveur VPN communique avec l'instance dans le cloud, faisons un PING!
