@@ -58,22 +58,25 @@ Liste des technologies AWS & autres utilisées :
 ## Ressources
 
 - https://www.google.com/
+- https://www.neptunet.fr/
+- https://www.it-connect.fr/
+- https://www.rdr-it.com/
 - https://docs.microsoft.com/
 - https://docs.aws.amazon.com/
 
 ## Limites & Piste de solution
 
-Avoir, un service ADDS multisites présente de nombreux avantages. Cependant, il y'a des limites.
+Avoir, un service ADDS multisites présente de nombreux avantages. Cependant, il y'a des limites par exemple:
 
-La plus grande (et celle dont nous ferons état ici) est sans doute le fait de disposer d'une connexion internet fiable
-à un coût non prohibitif.
+ - la connexion internet;
+ - les coûts associés à l'infrastructure AWS.
 
-Un moyen de palier à l'indisponibilité du service internet et par conséquent à la coupure de la liaison entre deux sites 
-serait de mettre en place sur les divers sites loxaux un serveur RODC (Read Only Domain Controller).
+Ici, nous ferons état du fait de disposer d'une connexion internet fiable à un coût non prohibitif.
+
+Un moyen de palier à l'indisponibilité du service internet et par conséquent à la coupure de la liaison entre deux sites serait de mettre en place sur les divers sites loxaux un serveur RODC (Read Only Domain Controller).
 
 Le serveur RODC ne servira qu’à authentifier les postes et les utilisateurs et appliquera également les stratégies de groupe.
-Comme la base de données Active Directory ne sera pas modifiable, même s’il est compromis, il ne sera pas possible d’en prendre 
-le contrôle en créant un nouvel utilisateur administrateur par exemple et ceci n’impactera pas le serveur AD principal de l’entreprise.
+Comme la base de données Active Directory ne sera pas modifiable, même s’il est compromis, il ne sera pas possible d’en prendre le contrôle en créant un nouvel utilisateur administrateur par exemple et ceci n’impactera pas le serveur AD principal de l’entreprise.
 
 
 ## Configuration du serveur Linux Ubuntu 20.04
@@ -152,14 +155,15 @@ Après le redémarrage, on procède à l'installation de 'strongSwan' sur notre 
 
 Mise en place de la liaison VPN à travers l'édition de deux fichiers : 'ipsec.conf' et 'ipsec.secrets'
 
-Editez le fichier /etc/ipsec.conf, comme c-dessous et ajoutez “votre_ip_publique”. Le reste de la configuration doit correspondre à votre réseau :
+Editez le fichier /etc/ipsec.conf, comme ci-dessous et ajoutez “votre_ip_publique”. Le reste de la configuration doit correspondre à votre réseau :
 ### ~$ sudo nano /etc/ipsec.conf
-![5](https://user-images.githubusercontent.com/46109209/183499039-70253be5-c118-4adc-a721-7498b8d0de36.png)
+![1-copy](https://user-images.githubusercontent.com/46109209/184720935-8437dc41-d567-4eeb-9e65-ee348fb9c154.png)
 
 N.B. Attention Strongswan est très susceptible avec ce fichier, toutes les lignes écrites après “conn nom_de_votre_liaison” doivent obligatoirement commencer        par une tabulation sinon le démarrage d’ipsec sera en erreur.
 
 Éditez le fichier /etc/ipsec.secrets comme suit 
-![6](https://user-images.githubusercontent.com/46109209/183501050-fd192a38-45d7-40d3-80ea-7ee6598b2903.png)
+
+![2-copy](https://user-images.githubusercontent.com/46109209/184721012-8570fd92-c9cc-4c02-a102-a453a9315638.png)
 
 
 ## Mise en place de l'infrastructure dans AWS
@@ -169,7 +173,7 @@ Il ne restera qu’à personnaliser les champs et configurer votre VPN côté LA
 
 Une fois que le ficher 'yaml' aura été exécuté, rendez-vous dans la console AWS, retournez sur le service VPC, et dans le menu “Connexions VPN site à site“. Sélectionnez la liaison VPN que nous avons créée et cliquer sur le bouton “Download configuration“.
 
-![vpnnn](https://user-images.githubusercontent.com/46109209/183505733-8d10ce7c-a795-4e42-8dc2-07d7a58c1a18.png)
+![4-copy](https://user-images.githubusercontent.com/46109209/184723903-61124897-cfbb-4789-b1ef-3810b0bc9f5e.png)
 
 Sauf si vous avez du matériel bien spécifique, sélectionnez le fournisseur et la plateforme “Generic“. Cliquez sur “Download” pour obtenir le fichier contenant toute les informations dont nous aurons besoin pour monter le VPN côté réseau local.
 
@@ -182,7 +186,7 @@ Pourquoi deux tunnels? La redondance.
 
 ![c](https://user-images.githubusercontent.com/46109209/183508716-99bba3be-e699-48bd-a9b5-4f247a8f06cd.png)
 
-![d](https://user-images.githubusercontent.com/46109209/183508815-287dd636-b20c-4cd0-a031-9a0e72a04699.png)
+![183508815-287dd636-b20c-4cd0-a031-9a0e72a04699](https://user-images.githubusercontent.com/46109209/184721663-1c323219-8912-443c-8b11-2c873cdc3779.png)
 
 
 ### Finalisation de la configuration de VPN local:
@@ -193,14 +197,13 @@ Placez-vous dans le terminal et lancez les commandes suivantes:
 
 Redémarrage d'IPsec :
 ### ~$ sudo ipsec restart
+![183511938-0a0827cb-83db-4c07-b648-4e35db5ba2e8](https://user-images.githubusercontent.com/46109209/184722722-15774ccd-27c3-4f37-b1dc-5fa212d75130.png)
 
-Démarrage de la liaison VPN :
-### ~$ sudo ipsec up lan-to-aws
+Démarrage des liaisons VPN :
+### ~$ sudo ipsec up lan-to-aws-1
+### ~$ sudo ipsec up lan-to-aws-2
+![3](https://user-images.githubusercontent.com/46109209/184722836-a603b009-6a22-4e54-9ae5-87c2c1bf2752.png)
 
-Vérifier l'état de la connexion :
-### ~$ sudo ipsec status          
-
-![7](https://user-images.githubusercontent.com/46109209/183511938-0a0827cb-83db-4c07-b648-4e35db5ba2e8.png)
 
 Afin de confirmer que notre serveur VPN communique avec l'instance dans le cloud, faisons un PING!
 
