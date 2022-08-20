@@ -11,9 +11,7 @@ Il devient donc nécessaire de proposer aux entreprises des solutions innovantes
 
 ## Représentation de l'infrastructure
 
-![INFRA](https://user-images.githubusercontent.com/46109209/184464704-bf011056-c87b-4601-9345-e8908783a704.png)
-
-N.B. Le choix des ISP (Internet Service Provider) ou FAI (Fournisseur d'Accès Internet) est personnel et n'est l'objet d'aucune entente. 
+![infra-2](https://user-images.githubusercontent.com/46109209/185731148-5f0e62b5-83ee-447f-9cde-b7531ec12033.png)
 
 
 ## Langages
