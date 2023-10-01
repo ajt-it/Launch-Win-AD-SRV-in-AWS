@@ -55,10 +55,6 @@ Liste des technologies AWS & autres utilisées :
 
 ## Ressources
 
-- https://www.google.com/
-- https://www.neptunet.fr/
-- https://www.it-connect.fr/
-- https://www.rdr-it.com/
 - https://docs.microsoft.com/
 - https://docs.aws.amazon.com/
 
